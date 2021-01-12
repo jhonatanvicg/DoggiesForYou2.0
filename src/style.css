@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Signika", sans-serif;
+}
+
+.profile-show-breads, .profile-explore, .profile-fav, .profile-breed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile {
+  z-index: 1;
+  width: 18%;
+  height: 100vh;
+  background: #222831;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 10%;
+  width: 82%;
+  align-items: center;
+}
+.profile-header img {
+  width: 2rem;
+  height: 2rem;
+}
+.profile-breed {
+  width: 82%;
+  height: 20%;
+}
+.profile-breed img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #cbcace;
+}
+.profile-breed .breed-text {
+  font-size: 1rem;
+  color: #fff;
+  margin-top: 10px;
+}
+.profile-fav {
+  border-top: 1px solid rgba(255, 255, 255, 0.226);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.226);
+  flex-direction: row;
+  width: 82%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 25px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.profile-fav img {
+  width: 25px;
+  height: 25px;
+}
+.profile-fav .fav-text {
+  color: #fff;
+  margin-left: 12px;
+}
+.profile-fav:hover {
+  transition: 0.5s;
+  background-color: #d6d0d0;
+}
+.profile-fav:hover .fav-text {
+  color: #222831;
+}
+.profile-explore {
+  flex-direction: row;
+  width: 82%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.226);
+  cursor: pointer;
+}
+.profile-explore i {
+  font-size: 1.5rem;
+  color: #b9b9c0;
+}
+.profile-explore .explore-text {
+  margin-left: 12px;
+  color: #fff;
+}
+.profile-explore:hover {
+  transition: 0.5s;
+  background-color: #d6d0d0;
+}
+.profile-explore:hover .explore-text {
+  color: #222831;
+}
+.profile-explore:hover i {
+  color: #222831;
+}
+.profile-show-breads {
+  flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 82%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.226);
+}
+.profile-show-breads .show-breads-text {
+  color: #fff;
+}
+.profile-show-breads i {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-right: 20px;
+}
+.profile-show-breads:hover {
+  transition: 0.5s;
+  background-color: #d6d0d0;
+}
+.profile-show-breads:hover .show-breads-text {
+  color: #222831;
+}
+.profile-show-breads:hover i {
+  color: #222831;
+}
+
+.container-photos {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 85%;
+  height: 100vh;
+  background: #414752;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .profile-show-breads, .profile-explore, .profile-fav {
+    height: 90px;
+    margin: 0;
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.226);
+    border-left: 1px solid rgba(255, 255, 255, 0.226);
+  }
+
+  .profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .profile-header {
+    border: 1px solid wheat;
+    display: none;
+  }
+  .profile-breed img {
+    border: none;
+  }
+  .container-photos {
+    top: 100px;
+    border-radius: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .profile img {
+    height: 30px;
+    width: 30px;
+  }
+  .profile-fav {
+    display: flex;
+    justify-content: space-around;
+    border-right: 0;
+  }
+  .profile-fav img {
+    width: 20px;
+    height: 20px;
+  }
+  .profile-fav .fav-text {
+    margin: 0;
+    font-size: 15px;
+  }
+  .profile-explore {
+    display: flex;
+    justify-content: space-around;
+    border-right: 0;
+  }
+  .profile-explore i {
+    font-size: 15px;
+  }
+  .profile-explore .explore-text {
+    margin: 0;
+    font-size: 15px;
+  }
+  .profile-show-breads {
+    display: flex;
+    justify-content: center;
+    border-right: 0;
+  }
+  .profile-show-breads i {
+    font-size: 15px;
+    margin-left: 5px;
+  }
+  .profile-show-breads .show-breads-text {
+    font-size: 15px;
+  }
+
+  .container-photos {
+    top: 88px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
