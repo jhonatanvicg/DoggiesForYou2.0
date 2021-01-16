@@ -6,14 +6,32 @@
   font-family: "Signika", sans-serif;
 }
 
-.profile-show-breads, .profile-explore, .profile-fav, .profile-breed {
+.profile-show-breeds, .profile-explore, .profile-fav, .profile-breed {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #222831;
+  background-color: #414752;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #222831;
+  border-radius: 10px;
+}
+
 .profile {
+  position: fixed;
   z-index: 1;
   width: 18%;
   height: 100vh;
@@ -99,29 +117,60 @@
 .profile-explore:hover i {
   color: #222831;
 }
-.profile-show-breads {
+.profile-show-breeds {
   flex-direction: row;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 82%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.226);
+  cursor: pointer;
 }
-.profile-show-breads .show-breads-text {
+.profile-show-breeds .show-breads-text {
   color: #fff;
 }
-.profile-show-breads i {
+.profile-show-breeds i {
   font-size: 1.5rem;
   color: #fff;
   margin-right: 20px;
 }
-.profile-show-breads:hover {
+.profile-show-breeds:hover {
   transition: 0.5s;
   background-color: #d6d0d0;
 }
-.profile-show-breads:hover .show-breads-text {
+.profile-show-breeds:hover .show-breads-text {
   color: #222831;
 }
-.profile-show-breads:hover i {
+.profile-show-breeds:hover i {
+  color: #222831;
+}
+
+.show-breeds-list {
+  display: block;
+}
+
+.hide-breeds-list {
+  display: none;
+}
+
+.breeds-list {
+  z-index: 2222;
+  position: fixed;
+  top: 47.5%;
+  left: 15%;
+  width: 20%;
+  max-height: 46%;
+  overflow-y: scroll;
+}
+.breeds-list li {
+  background-color: #222831;
+  text-align: center;
+  list-style: none;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+.breeds-list li:hover {
+  background-color: #b9b9c0;
   color: #222831;
 }
 
@@ -129,31 +178,95 @@
   position: absolute;
   top: 0;
   left: 15%;
-  width: 85%;
-  height: 100vh;
+  max-width: 85%;
+  min-height: 100vh;
   background: #414752;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   z-index: 2;
+  columns: 4 auto;
+  overflow-x: hidden;
+}
+
+.photos {
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 @media (max-width: 768px) {
-  .profile-show-breads, .profile-explore, .profile-fav {
-    height: 90px;
+  .profile-show-breeds, .profile-explore, .profile-fav {
+    height: 26%;
     margin: 0;
     padding: 0;
-    border-top: 0;
-    border-bottom: 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.226);
-    border-left: 1px solid rgba(255, 255, 255, 0.226);
+    width: 100%;
+  }
+
+  .hamburguer-menu .line {
+    position: relative;
+    width: 70%;
+    height: 12%;
+    background-color: #f3f3f3;
+    margin: 2px;
+  }
+
+  .hamburguer-menu {
+    position: fixed;
+    background-color: #222831;
+    border-radius: 50%;
+    z-index: 11;
+    cursor: pointer;
+    left: 3%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 2%;
+  }
+  .hamburguer-menu .line {
+    transition: 0.5s;
+  }
+  .hamburguer-menu .line-one-opened {
+    transform: rotate(45deg);
+    top: 8px;
+    transition: 1s;
+  }
+  .hamburguer-menu .line-two-opened {
+    width: 0;
+    transition: 0.5s;
+  }
+  .hamburguer-menu .line-three-opened {
+    transform: rotate(-45deg);
+    top: -10px;
+    transition: 0.5s;
+  }
+
+  .show-full-menu {
+    z-index: 10;
+  }
+
+  .stopScroll {
+    overflow-y: hidden;
   }
 
   .profile {
+    transition: 0.3s;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
   }
   .profile-header {
     border: 1px solid wheat;
@@ -162,59 +275,42 @@
   .profile-breed img {
     border: none;
   }
-  .container-photos {
-    top: 100px;
-    border-radius: 0;
-    left: 0;
+  .breeds-list {
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 12;
   }
-}
-@media (max-width: 480px) {
-  .profile img {
-    height: 30px;
-    width: 30px;
+  .breeds-list span {
+    cursor: pointer;
+    top: 2%;
+    width: 10%;
+    position: fixed;
+    font-size: 3rem;
+    display: block;
+    padding-left: 30px;
   }
-  .profile-fav {
-    display: flex;
-    justify-content: space-around;
-    border-right: 0;
-  }
-  .profile-fav img {
-    width: 20px;
-    height: 20px;
-  }
-  .profile-fav .fav-text {
-    margin: 0;
-    font-size: 15px;
-  }
-  .profile-explore {
-    display: flex;
-    justify-content: space-around;
-    border-right: 0;
-  }
-  .profile-explore i {
-    font-size: 15px;
-  }
-  .profile-explore .explore-text {
-    margin: 0;
-    font-size: 15px;
-  }
-  .profile-show-breads {
-    display: flex;
-    justify-content: center;
-    border-right: 0;
-  }
-  .profile-show-breads i {
-    font-size: 15px;
-    margin-left: 5px;
-  }
-  .profile-show-breads .show-breads-text {
-    font-size: 15px;
+  .breeds-list span i {
+    color: white;
   }
 
   .container-photos {
-    top: 88px;
+    border-radius: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    columns: 3 auto;
+    margin: 0;
+    padding: 0;
+  }
+  .container-photos .photos {
+    margin: 3px 0;
+  }
+}
+@media (max-width: 480px) {
+  .container-photos {
+    columns: 1 auto;
   }
 }
 

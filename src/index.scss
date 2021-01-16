@@ -19,9 +19,27 @@ $breakpoint-phone:480px;
     align-items: center;
     justify-content: center;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $profile; 
+    background-color: $photosContainer;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $profile; 
+    border-radius: 10px;
+  }
+ 
 
 
 .profile{
+    position: fixed;
     z-index: 1;
     width: 18%;
     height: 100vh;
@@ -122,13 +140,14 @@ $breakpoint-phone:480px;
     
     }
 
-    &-show-breads{
+    &-show-breeds{
         @extend %centerElement;
         flex-direction: row;
         padding-top: 10px;
         padding-bottom: 10px;
         width: 82%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.226);
+        cursor: pointer;
         .show-breads-text{
             color: #fff;
         }
@@ -150,6 +169,39 @@ $breakpoint-phone:480px;
         &:hover i{
             color: $profile;
         }
+
+    }
+    
+}
+
+.show-breeds-list{
+    display: block;
+}
+
+.hide-breeds-list{
+    display: none;
+}
+
+
+.breeds-list{
+    z-index: 2222;
+    position: fixed;
+    top: 47.5%;
+    left: 15%;
+    width: 20%;
+    max-height: 46%;
+    overflow-y: scroll;
+    li{
+        background-color: $profile;
+        text-align: center;
+        list-style: none;
+        color: #fff;
+        padding: 10px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(185, 185, 192);
+            color: $profile;
+        }
     }
 }
 
@@ -157,35 +209,107 @@ $breakpoint-phone:480px;
     position: absolute;
     top: 0;
     left: 15%;
-    width: 85%;
-    height: 100vh;
+    max-width: 85%;
+    min-height: 100vh;
     background: $photosContainer;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     z-index: 2;
+    columns: 4 auto;
+    overflow-x: hidden;
 }
+
+
+.photos{
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        
+    }
+}
+
 
 
  
 @media (max-width:$breakpoint-tablet){
 
     %topDesign{
-        height: 90px;
+        height: 26%;
         margin: 0;
         padding: 0;
-        border-top: 0;
-        border-bottom: 0;
-        border-right: 1px solid rgba(255, 255, 255, 0.226);
-        border-left: 1px solid rgba(255, 255, 255, 0.226);
+        width: 100%;
+    }
+
+    %lineDesign{
+        position: relative;
+        width: 70%;
+        height: 12%;
+        background-color: #f3f3f3;
+        margin: 2px;        
+    }
+
+    .hamburguer-menu{
+        position: fixed;
+        background-color: #222831;
+        border-radius: 50%;
+        z-index: 11;
+        cursor: pointer;
+        left: 3%;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 2%;
+        .line{
+            @extend %lineDesign;
+            transition: .5s;
+        }
+
+        .line-one-opened{
+            transform: rotate(45deg);
+            top: 8px;
+            transition: 1s;
+        }
+
+        .line-two-opened{
+            width: 0;
+            transition: .5s;
+        }        
+
+        .line-three-opened{
+            transform: rotate(-45deg);
+            top: -10px;
+            transition: .5s;
+        }
+
+    }
+
+
+    .show-full-menu{
+        z-index: 10;
+    }
+
+    .stopScroll{
+        overflow-y: hidden;
     }
 
     .profile{
+        transition: .3s;
         width: 100%;
         height: 100%;
         display: flex;
-        flex-direction: row;
+        justify-content: center;
         align-items: center;
-        
+        flex-wrap: wrap;        
         &-header{
             border:1px solid wheat;
             display: none;
@@ -205,77 +329,53 @@ $breakpoint-phone:480px;
             @extend %topDesign;
         }
 
-        &-show-breads{
+        &-show-breeds{
             @extend %topDesign;
         }
 
     }
 
+
+    .breeds-list{
+        width: 100%;
+        min-height: 100vh;
+        left: 0;
+        top: 0;
+        z-index: 12;
+
+        span{
+            cursor: pointer;
+            top: 2%;
+            width: 10%;
+            position: fixed;
+            font-size: 3rem;
+            display: block;
+            padding-left: 30px;
+            i{
+                color:white;
+            }
+        }
+
+    }
+
     .container-photos{
-        top:100px;
         border-radius: 0;
         left: 0;
-        width: 100%;
+        min-width: 100%;
         min-height: 100%;
+        columns: 3 auto;
+        margin: 0;
+        padding: 0;
+        
+        .photos{
+            margin: 3px 0;
+        }
     }
 }
 
 @media (max-width:$breakpoint-phone){
-    .profile{
-        img{
-            height: 30px;
-            width: 30px;
-        }
-    
-        &-fav{
-            display: flex;
-            justify-content: space-around;
-            border-right: 0;
-            img{
-                width: 20px;
-                height:20px;
-            }
-
-            .fav-text{
-                margin: 0;
-                font-size: 15px;
-            }
-        }
-
-        &-explore{
-            display: flex;
-            justify-content: space-around;
-            border-right: 0;
-            i{  
-                font-size: 15px;
-            }
-
-            .explore-text{
-                margin: 0;
-                font-size: 15px;
-            }
-        }
-
-
-        &-show-breads{
-            display: flex;
-            justify-content:center;
-            border-right: 0;
-            i{  
-                font-size: 15px;
-                margin-left: 5px;
-            }
-
-            .show-breads-text{
-                font-size: 15px;
-            }
-        }
-
-
-    
-    }
-
     .container-photos{
-        top: 88px;
+        columns: 1 auto;
     }
+
 }
