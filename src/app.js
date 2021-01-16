@@ -97,11 +97,14 @@ function deleteOldPictures(){
 }
 
 
-(async function startService(){
+async function startService(){
   let answerPictures = await fetchData('https://dog.ceo/api/breed/chihuahua/images');
   let answerBreeds = await getBreeds('https://dog.ceo/api/breeds/list/all');
   
   appendingBreedsName(answerBreeds);
   appendingPictures(answerPictures);
 
-})()
+}
+
+
+startService();
