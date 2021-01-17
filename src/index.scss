@@ -203,6 +203,9 @@ $breakpoint-phone:480px;
             color: $profile;
         }
     }
+    .back-menu{
+        display: none;
+    }
 }
 
 .container-photos{
@@ -351,8 +354,9 @@ $breakpoint-phone:480px;
             font-size: 3rem;
             display: block;
             padding-left: 30px;
-            i{
+            .back-menu{
                 color:white;
+                display: block;
             }
         }
 

@@ -173,6 +173,9 @@
   background-color: #b9b9c0;
   color: #222831;
 }
+.breeds-list .back-menu {
+  display: none;
+}
 
 .container-photos {
   position: absolute;
@@ -291,8 +294,9 @@
     display: block;
     padding-left: 30px;
   }
-  .breeds-list span i {
+  .breeds-list span .back-menu {
     color: white;
+    display: block;
   }
 
   .container-photos {

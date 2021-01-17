@@ -8,6 +8,9 @@ let containerPictures = document.querySelector('.container-photos');
 let profileShowBreeds = document.querySelector('.profile-show-breeds');
 let breedsList = document.querySelector('.breeds-list');
 let backMenu = document.querySelector('.back-menu');
+let actualBreed = document.querySelector('.breed-text');
+let pictureBreed = document.querySelector('.picture-breed');
+
 
 //Events
 hamburguerMenu.addEventListener('click',openMenu);
@@ -15,6 +18,11 @@ profileShowBreeds.addEventListener('click',showBreedsList);
 backMenu.addEventListener('click',closeBreedList);
 
 //Functions
+
+function setActualBreed(breed,urlImageBreed){
+  actualBreed.innerText = breed;
+  pictureBreed.src = urlImageBreed;
+}
 
 function showBreedsList(){
   breedsList.classList.toggle('show-breeds-list');
@@ -49,6 +57,7 @@ async function getBreeds(url){
 
 async function gettingForSpecificBreed(e){
   let answer = await fetchData(`https://dog.ceo/api/breed/${e.target.innerText}/images`);
+  setActualBreed(e.target.innerText,answer[0]);
   openMenu();
   showBreedsList();
   deleteOldPictures();
