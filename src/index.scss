@@ -209,34 +209,99 @@ $breakpoint-phone:480px;
 }
 
 .container-photos{
-    position: absolute;
-    top: 0;
-    left: 15%;
-    max-width: 85%;
     min-height: 100vh;
     background: $photosContainer;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     z-index: 2;
-    columns: 4 auto;
     overflow-x: hidden;
-}
+    left: 15%;
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
 
-
-.photos{
-    margin: 10px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    cursor: pointer;
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 50% 50%;
+    .column{
+        flex: 1 1 200px;
+        padding: 10px;
+        min-height: 100vh;
+    
+        .container-img{
+            margin: 20px 0;
+            background-color: coral;
+            height: auto;
+            display: block;
+            position: relative;
+            
+            .image{
+                position: relative;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                
+                img{
+                    transition: .3s;
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    
+                    &:hover{
+                        transition: .3s;
+                    }
+                }
+            }
         
+        
+            .hover{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                transition: .3s;
+
+                &:hover .bottom-hover{
+                    display: block;
+                }
+
+                &:hover i{
+                    transition: .3s;
+                    display: inline-block;
+                }
+               
+                i{
+                    position: absolute;
+                    right: .5rem;
+                    bottom: .5rem;
+                    transition: .3s;
+                    color: #fff;
+                    font-size: 1.5rem;
+                    
+                    &:hover{
+                        color: rgb(221, 44, 44);
+                    }
+                }
+              
+                .bottom-hover{
+                  display: none;
+                  position: absolute;
+                  bottom: 0;
+                  height: 50px;
+                  left: 0;
+                  right: 0;
+                  background-color: rgba(0, 0, 0, 0.193);
+                  -webkit-box-shadow: 0px -21px 13px 8px rgba(0,0,0,0.158); 
+                  /* box-shadow: 0px -5px 13px 8px rgba(0,0,0,0.378); */
+                  box-shadow: 0px -5px 13px 8px rgba(0, 0, 0, 0.193);
+                }
+            }
+        } 
     }
+
 }
+
+
 
 
 
@@ -367,19 +432,31 @@ $breakpoint-phone:480px;
         left: 0;
         min-width: 100%;
         min-height: 100%;
-        columns: 3 auto;
         margin: 0;
         padding: 0;
-        
-        .photos{
-            margin: 3px 0;
+    }
+
+    .bottom-hover{
+        display: block !important;
+        i{
+            right: .5rem !important;
+            bottom: .5rem !important;
+            font-size: 1rem !important;
+            display: inline-block !important;
         }
     }
 }
 
 @media (max-width:$breakpoint-phone){
-    .container-photos{
-        columns: 1 auto;
-    }
 
+    
+    .bottom-hover{
+        display: block !important;
+        i{
+            right: .3rem !important;
+            bottom: .3rem !important;
+            font-size: .7rem !important;
+            display: inline-block !important;
+        }
+    }
 }

@@ -12,6 +12,11 @@ let actualBreed = document.querySelector('.breed-text');
 let pictureBreed = document.querySelector('.picture-breed');
 
 
+//Columns
+let columnOne = document.querySelector('.column-one');
+let columnTwo = document.querySelector('.column-two');
+let columnThree = document.querySelector('.column-three');
+
 //Events
 hamburguerMenu.addEventListener('click',openMenu);
 profileShowBreeds.addEventListener('click',showBreedsList);
@@ -40,6 +45,10 @@ function openMenu(){
   fullMenu.classList.toggle('show-full-menu');
 }
 
+function openPhoto(e){
+  console.log(e.target.src)
+}
+
 
 //Call to API
 async function fetchData(url){
@@ -66,17 +75,52 @@ async function gettingForSpecificBreed(e){
 
 
 function creatingTemplate(urlImage){
-  let photoDiv = document.createElement('div');
-  photoDiv.classList.add('photos');
+
+  //Creacion de div PADRE
+  let containerImg = document.createElement('div');
+  containerImg.classList.add('container-img');
+  
+  //Creacion de div Hijos
+  
+  let image = document.createElement('div');
+  image.classList.add('image');
+  let hover = document.createElement('div');
+  hover.classList.add('hover');
+
+  //Creacion de div nietos
+  let bottomHover = document.createElement('div');
+  bottomHover.classList.add('bottom-hover');
+
+
+  //Creacion de "complementos"
   let picture = document.createElement('img');
   picture.src = urlImage; 
-  photoDiv.appendChild(picture);
-  return photoDiv
+  let heart = document.createElement('i');
+  heart.classList.add('show-heart');
+  heart.classList.add('fa');
+  heart.classList.add('fa-heart');
+
+  //Insercion de los elementos
+  containerImg.appendChild(image);
+  image.appendChild(picture);
+  containerImg.appendChild(hover);
+  hover.appendChild(bottomHover);
+  bottomHover.appendChild(heart);
+
+  //Agregando escucha a cada una de las fotos
+  containerImg.addEventListener('click',openPhoto)
+  return containerImg
 }
 
 function appendingPictures(answerPictures){
-  answerPictures.forEach(src => {
-    containerPictures.appendChild(creatingTemplate(src));
+  answerPictures.forEach((src,index) => {    
+    if(index <= Math.floor(answerPictures.length / 3) ){
+      columnOne.appendChild(creatingTemplate(src));
+    }else if(index > Math.floor(answerPictures.length / 3) && index <= Math.floor(answerPictures.length / 3)*2 ){
+      columnTwo.appendChild(creatingTemplate(src));
+    }else{
+      columnThree.appendChild(creatingTemplate(src));
+    }
    });  
 }
 
@@ -99,7 +143,7 @@ function appendingBreedsName(answerBreeds){
 
 
 function deleteOldPictures(){
-  let pictures = document.querySelectorAll('.photos');
+  let pictures = document.querySelectorAll('.container-img');
   for(let picture of pictures){
     picture.remove()
   }
