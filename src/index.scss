@@ -36,6 +36,9 @@ $breakpoint-phone:480px;
     border-radius: 10px;
   }
  
+  .added-to-favorite{
+      color: rgb(221, 44, 44) !important;
+  }
 
 
 .profile{
@@ -251,51 +254,56 @@ $breakpoint-phone:480px;
                     }
                 }
             }
-        
-        
-            .hover{
+
+
+            &:hover .bottom-hover{
+                display: inline-block;
+            }
+
+
+            .bottom-hover{
+                display: none;
+                z-index: 2;
                 position: absolute;
-                top: 0;
-                bottom: 0;
-                right: 0;
                 left: 0;
-                transition: .3s;
+                right: 0;
+                bottom: 0;
+                height: 50px;
+                background-color: rgba(0, 0, 0, 0.193);
+                -webkit-box-shadow: 0px -21px 13px 8px rgba(0,0,0,0.158); 
+                 box-shadow: 0px -5px 13px 8px rgba(0,0,0,0.378);  
+                box-shadow: 0px -5px 13px 8px rgba(0, 0, 0, 0.193);
+            }
 
-                &:hover .bottom-hover{
-                    display: block;
-                }
+            &:hover .icon-fav-container{
+                display: inline-block;
+            }
 
-                &:hover i{
-                    transition: .3s;
-                    display: inline-block;
-                }
-               
+            .icon-fav-container{
+                display: none;
+                position: absolute;
+                bottom: .5rem;
+                right: .5rem;
+                z-index: 10;
+            
+
                 i{
                     position: absolute;
                     right: .5rem;
                     bottom: .5rem;
                     transition: .3s;
-                    color: #fff;
+                    color: white;
                     font-size: 1.5rem;
                     
                     &:hover{
-                        color: rgb(221, 44, 44);
+                      color: rgb(221, 44, 44);
                     }
-                }
-              
-                .bottom-hover{
-                  display: none;
-                  position: absolute;
-                  bottom: 0;
-                  height: 50px;
-                  left: 0;
-                  right: 0;
-                  background-color: rgba(0, 0, 0, 0.193);
-                  -webkit-box-shadow: 0px -21px 13px 8px rgba(0,0,0,0.158); 
-                  /* box-shadow: 0px -5px 13px 8px rgba(0,0,0,0.378); */
-                  box-shadow: 0px -5px 13px 8px rgba(0, 0, 0, 0.193);
+                
                 }
             }
+        
+        
+
         } 
     }
 
@@ -437,7 +445,11 @@ $breakpoint-phone:480px;
     }
 
     .bottom-hover{
-        display: block !important;
+        display: inline-block !important;
+    }
+
+    .icon-fav-container{
+
         i{
             right: .5rem !important;
             bottom: .5rem !important;
@@ -445,18 +457,24 @@ $breakpoint-phone:480px;
             display: inline-block !important;
         }
     }
+
 }
 
 @media (max-width:$breakpoint-phone){
 
     
-    .bottom-hover{
+    .bottomHover{
         display: block !important;
-        i{
-            right: .3rem !important;
-            bottom: .3rem !important;
-            font-size: .7rem !important;
-            display: inline-block !important;
-        }
+    }
+    .icon-fav-container{
+        right: .3rem !important;
+        bottom: .3rem !important;
+        font-size: .7rem !important;
+        display: inline-block !important;
+    }
+
+    .column{
+        margin:0 ;
+        padding: 0;
     }
 }

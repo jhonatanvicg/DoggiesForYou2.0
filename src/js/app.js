@@ -11,6 +11,10 @@ let backMenu = document.querySelector('.back-menu');
 let actualBreed = document.querySelector('.breed-text');
 let pictureBreed = document.querySelector('.picture-breed');
 
+let arrsFavorites = [];
+
+//Menu Options
+let goToFavorites = document.querySelector('.profile-fav');
 
 //Columns
 let columnOne = document.querySelector('.column-one');
@@ -21,8 +25,21 @@ let columnThree = document.querySelector('.column-three');
 hamburguerMenu.addEventListener('click',openMenu);
 profileShowBreeds.addEventListener('click',showBreedsList);
 backMenu.addEventListener('click',closeBreedList);
+goToFavorites.addEventListener('click',goToFavoritesPage);
+
+
 
 //Functions
+
+
+
+function goToFavoritesPage(){
+  openMenu();
+  deleteOldPictures();
+  let favorites = JSON.parse(localStorage.getItem('Favs'));
+  appendingPictures(favorites, true);
+}
+
 
 function setActualBreed(breed,urlImageBreed){
   actualBreed.innerText = breed;
@@ -46,9 +63,24 @@ function openMenu(){
 }
 
 function openPhoto(e){
-  console.log(e.target.src)
+  alert(e.target.src)
 }
 
+
+function addFavorites(src){
+  if(localStorage.getItem('Favs') == null ){
+    arrsFavorites = arrsFavorites;
+  }else{
+    arrsFavorites = JSON.parse(localStorage.getItem('Favs'));
+  }
+  if(!arrsFavorites.includes(src)){
+    alert('Agregando');
+    arrsFavorites.push(src);
+    localStorage.setItem('Favs',JSON.stringify(arrsFavorites));
+  }else{
+    alert('Ya se encuentra en tu lista de favoritos')
+  }
+}
 
 //Call to API
 async function fetchData(url){
@@ -74,7 +106,7 @@ async function gettingForSpecificBreed(e){
 }
 
 
-function creatingTemplate(urlImage){
+function creatingTemplate(urlImage, isFavorite = false){
 
   //Creacion de div PADRE
   let containerImg = document.createElement('div');
@@ -84,42 +116,47 @@ function creatingTemplate(urlImage){
   
   let image = document.createElement('div');
   image.classList.add('image');
-  let hover = document.createElement('div');
-  hover.classList.add('hover');
-
-  //Creacion de div nietos
   let bottomHover = document.createElement('div');
   bottomHover.classList.add('bottom-hover');
+  let iconContainer = document.createElement('div');
+  iconContainer.classList.add('icon-fav-container');
+
 
 
   //Creacion de "complementos"
   let picture = document.createElement('img');
   picture.src = urlImage; 
   let heart = document.createElement('i');
-  heart.classList.add('show-heart');
+  heart.addEventListener('click',()=>{
+    addFavorites(urlImage);
+  });
   heart.classList.add('fa');
   heart.classList.add('fa-heart');
+  if(isFavorite == true){
+    heart.classList.add('added-to-favorite');
+  }
 
   //Insercion de los elementos
   containerImg.appendChild(image);
   image.appendChild(picture);
-  containerImg.appendChild(hover);
-  hover.appendChild(bottomHover);
-  bottomHover.appendChild(heart);
+  containerImg.appendChild(bottomHover);
+  containerImg.appendChild(iconContainer);
+  iconContainer.appendChild(heart);
 
   //Agregando escucha a cada una de las fotos
-  containerImg.addEventListener('click',openPhoto)
+  picture.addEventListener('click',openPhoto)
   return containerImg
 }
 
-function appendingPictures(answerPictures){
+function appendingPictures(answerPictures, isFavorite = false){
+  console.log(isFavorite)
   answerPictures.forEach((src,index) => {    
     if(index <= Math.floor(answerPictures.length / 3) ){
-      columnOne.appendChild(creatingTemplate(src));
+      columnOne.appendChild(creatingTemplate(src, isFavorite));
     }else if(index > Math.floor(answerPictures.length / 3) && index <= Math.floor(answerPictures.length / 3)*2 ){
-      columnTwo.appendChild(creatingTemplate(src));
+      columnTwo.appendChild(creatingTemplate(src, isFavorite));
     }else{
-      columnThree.appendChild(creatingTemplate(src));
+      columnThree.appendChild(creatingTemplate(src, isFavorite));
     }
    });  
 }
